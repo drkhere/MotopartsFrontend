@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management - MotoParts</title>
+    <link rel="stylesheet" href="/stylesfolder/productstyle.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <h1 class="logo">MotoParts Admin</h1>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="users.html">Users</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="orders.html">Order</a></li>
+            <li><button class="logout-btn">Logout</button></li>
+        </ul>
+    </header>
+
+    <main class="product-content">
+        <h2>Recent Products</h2>
+        <div class="product-list">
+            <!-- Example product card -->
+            <!-- <div class="product-card">
+                <img src="path-to-product-image.jpg" alt="Product Image">
+                <h3>Product Name</h3>
+            </div>
+            <div class="product-card">
+                <img src="path-to-product-image.jpg" alt="Product Image">
+                <h3>Product Name</h3>
+            </div>
+            <div class="product-card">
+                <img src="path-to-product-image.jpg" alt="Product Image">
+                <h3>Product Name</h3>
+            </div>
+            <div class="product-card">
+                <img src="path-to-product-image.jpg" alt="Product Image">
+                <h3>Product Name</h3>
+            </div>
+            <div class="product-card">
+                <img src="path-to-product-image.jpg" alt="Product Image">
+                <h3>Product Name</h3>
+            </div>
+            <div class="product-card">
+                <img src="path-to-product-image.jpg" alt="Product Image">
+                <h3>Product Name</h3>
+            </div> -->
+            <!-- Add more product cards dynamically from backend -->
+
+            <!-- Add New Product Button -->
+            
+        </div>
+        <div class="add-product">
+            <a href="add-product.html" class="plus-icon">+</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 MotoParts. All rights reserved.</p>
+    </footer>
+
+    <script>
+
+        var products;
+        const IP = "localhost";
+        const PORT = 9191;
+
+        // fetch('https://dummyjson.com/products')
+        //     .then(res => res.json())
+        //     .then(console.log);
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const productList = document.querySelector(".product-list");
+
+            // Fetch products from the API
+            fetch(`http://localhost:9191/api/v1/products/all`)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    const productContentDiv = document.getElementsByClassName('product-content')[0]; // Select the first matching element
+
+                    // var products = data.products; 
+                    var products = data.data;
+
+                    if (products.length > 0) {
+                        products.forEach((product) => {
+                            console.log(product);
+                            const imageUrl = product.images && product.images.length > 0
+                            ? `http://${IP}:${PORT}/api/v1/images/image/download/${product.images[0].id}`
+                            : "../noimageavailable.png"; 
+
+                            const noimg = `Motoparts/noimageavailable.png`;
+                            
+
+                            // Create product card
+                            const productCard = document.createElement("div");
+                            productCard.className = "product-card";
+                            productCard.innerHTML = `
+                                <img src="${imageUrl}" alt="${product.title}" class="product-image">
+                                <h3>${product.name}</h3>
+                                <p>${product.description}</p>
+                                <p><strong>Price:</strong> $${product.price.toFixed(2)}</p>
+                            `;
+                            productCard.addEventListener("click", () => {
+                                window.location.href = `product-details.html?id=${product.id}`;
+                            });
+                            // Append product card to the product list
+                            productList.appendChild(productCard);
+                        });
+                    } else {
+                        productList.innerHTML = "<p>No products available.</p>";
+                    }
+
+
+                })
+                .catch((error) => {
+                    console.error("Error fetching products:", error);
+                });
+        });
+
+
+
+
+
+    </script>
+</body>
+
+</html>

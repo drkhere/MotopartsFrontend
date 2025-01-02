@@ -1,0 +1,268 @@
+/* General Reset
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    height: 100vh;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #007BFF;
+    color: #fff;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+  }
+  
+  .logout-btn {
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  header ul li {
+    margin:0px 10px;
+    list-style: none;
+  }
+
+  header ul li a{
+    text-decoration: none;
+    padding: 10px;
+  }
+
+  header ul {
+    display: flex;
+    
+    align-items: center;
+  }
+  
+  .logout-btn:hover {
+    background-color: #ff1a1a;
+  }
+  
+  .main-content {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+
+  
+  .footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #007BFF;
+    color: #fff;
+    margin-top: 2rem;
+  }
+  
+
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .logout-btn {
+      margin-top: 0.5rem;
+    }
+  
+    .card-container {
+      grid-template-columns: 1fr;
+    }
+  }
+   */
+
+
+/* General Reset */
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  height: 100vh;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #007BFF;
+  color: white;
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar ul li {
+  margin: 0px 10px;
+  list-style: none;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  padding: 10px;
+}
+
+.navbar ul {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.logout-btn {
+  background-color: #FF4D4D;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.logout-btn:hover {
+  background-color: #FF1A1A;
+}
+
+/* Main Content Styles */
+.main-content {
+  padding: 2rem;
+  background-color: #f9f9f9;
+  color: #333;
+  text-align: center;
+}
+
+.main-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #007BFF;
+}
+
+/* Form Styles */
+form {
+
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  /* max-width: 600px; */
+  margin: 0 auto;
+}
+
+.form-main-div {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  width: 1000px;
+  margin: 20px;
+  padding: 20px;
+}
+
+.product-info {
+  width: 100%;
+}
+
+.image-section {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+input,
+textarea,
+select {
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  padding: 1rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+
+/* Add Image Button */
+#add-image-btn {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#add-image-btn:hover {
+  background-color: #218838;
+}
+
+/* Footer Styles */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #007BFF;
+  color: white;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}

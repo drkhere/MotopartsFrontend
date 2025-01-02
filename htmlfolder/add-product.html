@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Product - MotoParts</title>
+  <link rel="stylesheet" href="/stylesfolder/addproductstyle.css">
+</head>
+
+<body>
+  <header class="navbar">
+    <h1 class="logo">MotoParts Admin</h1>
+    <ul>
+      <li><a href="homepage.html">Home</a></li>
+      <li><a href="users.html">Users</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="orders.html">Order</a></li>
+      <li><button class="logout-btn">Logout</button></li>
+    </ul>
+  </header>
+
+  <main class="main-content">
+    <h2>Excited For New Product In Inventory</h2>
+
+    <form action="" class="product-form" method="POST" enctype="multipart/form-data">
+
+
+      <div class="form-main-div">
+        <div class="product-info">
+          <!-- Product Title -->
+
+          <div class="form-group">
+            <label for="title">Product Title:</label>
+            <input type="text" id="title" name="title" required>
+          </div>
+
+          <!-- Brand -->
+          <div class="form-group">
+            <label for="brand">Brand:</label>
+            <input type="text" id="brand" name="brand" required>
+          </div>
+
+          <!-- Selling Price -->
+          <div class="form-group">
+            <label for="selling-price">Selling Price:</label>
+            <input type="number" id="selling-price" name="selling-price" required>
+          </div>
+
+          <!-- Cost Price -->
+          <div class="form-group">
+            <label for="cost-price">Cost Price:</label>
+            <input type="number" id="cost-price" name="cost-price" required>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="stock">InStock:</label>
+            <input type="number" id="stock" name="stock" required>
+          </div>
+
+          <!-- Category Dropdowns -->
+          <div class="form-group">
+            <label for="category">Category:</label>
+            <!-- Main Category Dropdown -->
+            <select id="category" name="category" required>
+              <option value="" disabled selected>Select Category</option>
+              <option value="electronic">Electronics</option>
+              <option value="automotive">Automotive</option>
+              <option value="fashion">Fashion</option>
+            </select>
+
+            <!-- Subcategory Dropdown -->
+            <select id="subcategory" name="subcategory" disabled>
+              <option value="" disabled selected>Select Subcategory</option>
+            </select>
+
+            <!-- End Category Dropdown -->
+            <select id="end-category" name="end-category" disabled>
+              <option value="" disabled selected>Select End Category</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="image-section">
+          <!-- Image Upload -->
+          <div class="form-group">
+            <label for="product-image">Upload Product Image:</label>
+            <input type="file" id="product-image" name="product-image" accept="image/*" required>
+          </div>
+
+          <!-- Option to Add More Images -->
+          <div class="form-group" id="additional-images">
+            <!-- <label for="more-images">Add More Images:</label>
+            <input type="file" name="more-images[]" accept="image/*"> -->
+            <button type="button" id="add-image-btn">+ Add Another Image</button>
+          </div>
+        </div>
+      </div>
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn">Add Product</button>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 MotoParts. All rights reserved.</p>
+  </footer>
+
+  <script>
+
+    const IP = "localhost"
+    const PORT = 9191
+    // Add More Image Fields
+    document.getElementById('add-image-btn').addEventListener('click', function () {
+      const newImageInput = document.createElement('input');
+      newImageInput.type = 'file';
+      newImageInput.name = 'more-images[]';
+      newImageInput.accept = 'image/*';
+      document.getElementById('additional-images').appendChild(newImageInput);
+    });
+
+
+    // Categories and Subcategories Data
+    const categories = {
+      electronics: {
+        mobiles: ["Smartphones", "Feature Phones"],
+        laptops: ["Gaming Laptops", "Ultrabooks"],
+      },
+      automotive: {
+        bikes: ["Sport Bikes", "Cruiser Bikes"],
+        cars: ["Sedans", "SUVs"],
+      },
+      fashion: {
+        men: ["Shirts", "Trousers"],
+        women: ["Dresses", "Skirts"],
+      },
+    };
+
+    // Dropdown Elements
+    const categoryDropdown = document.getElementById("category");
+    const subcategoryDropdown = document.getElementById("subcategory");
+    const endCategoryDropdown = document.getElementById("end-category");
+
+    // Event Listener for Main Category Selection
+    categoryDropdown.addEventListener("change", function () {
+      const selectedCategory = this.value;
+
+      // Populate Subcategory Dropdown
+      subcategoryDropdown.innerHTML =
+        '<option value="" disabled selected>Select Subcategory</option>';
+      if (categories[selectedCategory]) {
+        for (const subcategory in categories[selectedCategory]) {
+          const option = document.createElement("option");
+          option.value = subcategory;
+          option.textContent = subcategory.charAt(0).toUpperCase() + subcategory.slice(1);
+          subcategoryDropdown.appendChild(option);
+        }
+        subcategoryDropdown.disabled = false;
+      } else {
+        subcategoryDropdown.disabled = true;
+      }
+
+      // Reset End Category Dropdown
+      endCategoryDropdown.innerHTML =
+        '<option value="" disabled selected>Select End Category</option>';
+      endCategoryDropdown.disabled = true;
+    });
+
+    // Event Listener for Subcategory Selection
+    subcategoryDropdown.addEventListener("change", function () {
+      const selectedCategory = categoryDropdown.value;
+      const selectedSubcategory = this.value;
+
+      // Populate End Category Dropdown
+      endCategoryDropdown.innerHTML =
+        '<option value="" disabled selected>Select End Category</option>';
+      if (
+        categories[selectedCategory] &&
+        categories[selectedCategory][selectedSubcategory]
+      ) {
+        categories[selectedCategory][selectedSubcategory].forEach((endCategory) => {
+          const option = document.createElement("option");
+          option.value = endCategory.toLowerCase().replace(" ", "-");
+          option.textContent = endCategory;
+          endCategoryDropdown.appendChild(option);
+        });
+        endCategoryDropdown.disabled = false;
+      } else {
+        endCategoryDropdown.disabled = true;
+      }
+    });
+
+
+    // const submitbtn = document.getElementById("submit-btn");
+    // submitbtn.addEventListener("DOMContentLoaded",()=>{
+
+
+    // })
+
+    //Add Data To Backend
+
+
+
+
+
+
+
+
+    // document.addEventListener("DOMContentLoaded", () => {
+    //   const submitButton = document.querySelector('.submit-btn'); // Select the button
+
+    //   submitButton.addEventListener('click', () => {
+    //     // Gather input values when the button is clicked
+    //     const data = {
+    //       name: document.getElementById("title").value,
+    //       brand: document.getElementById("brand").value,
+    //       price: document.getElementById("selling-price").value,
+    //       inventory: document.getElementById("stock").value,
+    //       description: document.getElementById("description").value,
+
+
+    //     };
+    //     console.log(data)
+    //     data.forEach(pro =>{
+    //       console.log(pro);
+    //     })
+
+    //     const url = `http://${IP}:${PORT}/api/v1/products/add`;
+
+    //     // Sending data using fetch
+    //     fetch(url, {
+    //       method: "POST", // HTTP method
+    //       headers: {
+    //         "Content-Type": "application/json", // Inform the server that the data is JSON
+    //       },
+    //       body: JSON.stringify(data), // Convert data object to JSON string
+    //     })
+    //       .then(response => {
+    //         if (!response.ok) {
+    //           throw new Error("Network response was not ok " + response.statusText);
+    //         }
+    //         return response.json(); // Parse JSON response
+    //       })
+    //       .then(data => {
+    //         console.log("Success:", data); // Handle success
+    //       })
+    //       .catch(error => {
+    //         console.error("Error:", error); // Handle errors
+    //       });
+    //   });
+    // });
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.querySelector('.product-form'); // Select the form
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent the form from submitting the traditional way
+
+        // Gather input values when the form is submitted
+        const data = {
+          name: document.getElementById("title").value,
+          brand: document.getElementById("brand").value,
+          price: document.getElementById("selling-price").value,
+          inventory: document.getElementById("stock").value,
+          description: document.getElementById("description").value,
+          category: document.getElementById("category").value,
+          subcategory: document.getElementById("subcategory").value,
+          endCategory: document.getElementById("end-category").value,
+        };
+
+        const productImage = document.getElementById("product-image").files[0];
+
+        if (!productImage) {
+          console.error("No product image selected");
+          alert("Please select a product image before submitting.");
+          return;
+        }
+
+        const url = `http://${IP}:${PORT}/api/v1/products/add`; // Backend URL for adding product
+
+        // Step 1: Add the product
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then(response => {
+            if (!response.ok) {
+              return response.json().then(err => {
+                console.error("Product creation failed:", err);
+                throw new Error("Failed to create product: " + response.statusText);
+              });
+            }
+            return response.json(); // Parse JSON response
+          })
+          .then(productData => {
+            console.log("Product added successfully:", productData);
+            console.log("product image ",productImage);
+            console.log("Product Id",productData.data.id)
+
+            // Step 2: Upload the image
+            const formData = new FormData();
+            formData.append("files", productImage); // Append the image file
+            // formData.append("productId", productData.data.id); // Append the product ID
+            const urlimage = `http://${IP}:${PORT}/api/v1/images/upload?productId=${productData.data.id}`;
+
+            return fetch(urlimage, {
+              method: "POST",
+              body:formData,
+            });
+          })
+          .then(imageResponse => {
+            if (!imageResponse.ok) {
+              throw new Error("Image upload failed: " + imageResponse.statusText);
+            }
+            return imageResponse.json();
+          })
+          .then(imageData => {
+            console.log("Image uploaded successfully:", imageData);
+            alert("Product and image added successfully!");
+          })
+          .catch(error => {
+            console.error("Error:", error.message);
+            alert("An error occurred: " + error.message);
+          });
+      });
+    });
+
+
+
+  </script>
+</body>
+
+</html>

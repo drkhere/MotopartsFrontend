@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="/stylesfolder/productdetails.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <h1 class="logo">MotoParts Admin</h1>
+        <ul>
+            <li>
+                <a href="homepage.html">Home</a>
+            </li>
+            <li>
+                <a href="users.html">Users</a>
+            </li>
+            <li>
+                <a href="products.html">Products</a>
+            </li>
+            <li>
+                <a href="orders.html">Order</a>
+            </li>
+            <li>
+                <button class="logout-btn">Logout</button>
+            </li>
+        </ul>
+    </header>
+
+    <main class="product-details">
+        <div class="product-info">
+            <img id="product-image" src="" alt="Product Image">
+            <div class="description-box">
+                <h2 id="product-title"></h2>
+                <p id="product-description"></p>
+                <p><strong>Price:</strong> $<span id="product-price"></span></p>
+                <p><strong>Brand:</strong> <span id="product-brand"></span></p>
+            </div>
+        </div>
+        <button id="edit-product-btn">Edit</button>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 MotoParts. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const IP = "localhost"
+        const PORT = 9191
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get("id");
+
+            document.getElementById('edit-product-btn').addEventListener('click', function () {
+                alert('Edit button clicked!');
+                window.location.href = `edit-product.html?id=${productId}`;
+            });
+            if (productId) {
+                // fetch(`https://dummyjson.com/products/${productId}`)
+                fetch(`http://${IP}:${PORT}/api/v1/products/product/${productId}/product`)
+                    .then((response) => response.json())
+                    .then((product) => {
+                        const imageurl = `http://${IP}:${PORT}/api/v1/images/image/download/${product.data.images[0].id}`;
+                        console.log(product)
+                        console.log("It is image",product.data.images[0])
+                        document.getElementById("product-image").src = imageurl;
+                        document.getElementById("product-title").textContent = product.data.name;
+                        document.getElementById("product-description").textContent = product.data.description;
+                        document.getElementById("product-price").textContent = product.data.price;
+                        document.getElementById("product-brand").textContent = product.data.brand;
+                    })
+                    .catch((error) => console.error("Error fetching product details:", error));
+            } else {
+                document.querySelector(".product-details").innerHTML = "<p>Product not found.</p>";
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>
