@@ -105,8 +105,9 @@
                             productCard.innerHTML = `
                                 <img src="${imageUrl}" alt="${product.title}" class="product-image">
                                 <h3>${product.name}</h3>
-                                <p>${product.description}</p>
-                                <p><strong>Price:</strong> $${product.price.toFixed(2)}</p>
+                                <p><strong>Price:</strong> Rs. ${product.price.toFixed(2)}</p>
+                                <p><Strong>Quantity:</strong> Qtn. ${product.inventory}</p>
+
                             `;
                             productCard.addEventListener("click", () => {
                                 window.location.href = `product-details.html?id=${product.id}`;
@@ -117,18 +118,11 @@
                     } else {
                         productList.innerHTML = "<p>No products available.</p>";
                     }
-
-
                 })
                 .catch((error) => {
                     console.error("Error fetching products:", error);
                 });
         });
-
-
-
-
-
     </script>
 </body>
 

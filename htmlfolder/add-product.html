@@ -1,4 +1,3 @@
-
 <!-- drk -->
 <!DOCTYPE html>
 <html lang="en">
@@ -93,7 +92,7 @@
           <!-- Image Upload -->
           <div class="form-group">
             <label for="product-image">Upload Product Image:</label>
-            <input type="file" id="product-image" name="product-image" accept="image/*" required>
+            <input type="file" id="product-image" class="product-image" name="product-image" accept="image/*" required>
           </div>
 
           <!-- Option to Add More Images -->
@@ -121,6 +120,7 @@
     document.getElementById('add-image-btn').addEventListener('click', function () {
       const newImageInput = document.createElement('input');
       newImageInput.type = 'file';
+      newImageInput.className = 'product-image'
       newImageInput.name = 'more-images[]';
       newImageInput.accept = 'image/*';
       document.getElementById('additional-images').appendChild(newImageInput);
@@ -279,7 +279,20 @@
           endCategory: document.getElementById("end-category").value,
         };
 
-        const productImage = document.getElementById("product-image").files[0];
+        const productImageElements = document.querySelectorAll(".product-image"); // Get all file input elements
+        const productImage = [];
+
+        productImageElements.forEach(input => {
+          if (input.files.length > 0) {
+            console.log("This is input",input);
+            console.log("This is input file",input.files);
+
+            Array.from(input.files).forEach(file => productImage.push(file));
+            // productImageElements.innerHTML = `<img src="${`http://${IP}:${PORT}/api/v1/images/image/download/${files[0]}`}"></img>`
+          }
+        });
+
+        console.log(productImage);
 
         if (!productImage) {
           console.error("No product image selected");
@@ -308,18 +321,20 @@
           })
           .then(productData => {
             console.log("Product added successfully:", productData);
-            console.log("product image ",productImage);
-            console.log("Product Id",productData.data.id)
+            console.log("product image ", productImage);
+            console.log("Product Id", productData.data.id)
 
             // Step 2: Upload the image
             const formData = new FormData();
-            formData.append("files", productImage); // Append the image file
+            productImage.forEach((files) => {
+              formData.append(`files`, files); // Append each file with a unique key
+            }); // Append the image file
             // formData.append("productId", productData.data.id); // Append the product ID
             const urlimage = `http://${IP}:${PORT}/api/v1/images/upload?productId=${productData.data.id}`;
 
             return fetch(urlimage, {
               method: "POST",
-              body:formData,
+              body: formData,
             });
           })
           .then(imageResponse => {
