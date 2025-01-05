@@ -160,6 +160,11 @@ body {
     margin-top: 2rem;
 }
 
+.btn-section{
+    display: flex;
+    
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .navbar, .footer {

@@ -66,25 +66,49 @@
           </div>
 
           <!-- Category Dropdowns -->
-          <div class="form-group">
-            <label for="category">Category:</label>
-            <!-- Main Category Dropdown -->
-            <select id="category" name="category" required>
-              <option value="" disabled selected>Select Category</option>
-              <option value="electronic">Electronics</option>
-              <option value="automotive">Automotive</option>
-              <option value="fashion">Fashion</option>
-            </select>
+          <div class="category-section-1">
+            <div class="form-group">
+              <label for="category">By Category:</label>
+              <!-- Main Category Dropdown -->
+              <select id="category" name="category" required>
+                <option value="" disabled selected>Select Category</option>
+                <option value="SpareByCategory">Spare By Category</option>
+                <!-- <option value="automotive">Automotive</option>
+                <option value="fashion">Fashion</option> -->
+              </select>
 
-            <!-- Subcategory Dropdown -->
-            <select id="subcategory" name="subcategory" disabled>
-              <option value="" disabled selected>Select Subcategory</option>
-            </select>
+              <!-- Subcategory Dropdown -->
+              <select id="subcategory" name="subcategory" disabled>
+                <option value="" disabled selected>Select Subcategory</option>
+              </select>
 
-            <!-- End Category Dropdown -->
-            <select id="end-category" name="end-category" disabled>
-              <option value="" disabled selected>Select End Category</option>
-            </select>
+              <!-- End Category Dropdown -->
+              <select id="end-category" name="end-category" disabled>
+                <option value="" disabled selected>Select End Category</option>
+              </select>
+            </div>
+          </div>
+          <div class="category-section-2">
+            <div class="form-group">
+              <label for="vehicle-category">By Vehicle:</label>
+              <!-- Main Category Dropdown -->
+              <select id="vehicle-category" name="vehicle-category" required>
+                <option value="" disabled selected>Select Category</option>
+                <option value="SpareByVehicle">Spare By Vehicle</option>
+                <!-- <option value="automotive">Automotive</option>
+                <option value="fashion">Fashion</option> -->
+              </select>
+
+              <!-- Subcategory Dropdown -->
+              <select id="vehicle-subcategory" name="vehicle-subcategory" disabled>
+                <option value="" disabled selected>Select Subcategory</option>
+              </select>
+
+              <!-- End Category Dropdown -->
+              <select id="vehicle-endcategory" name="vehicle-endcategory" disabled>
+                <option value="" disabled selected>Select End Category</option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -129,19 +153,130 @@
 
     // Categories and Subcategories Data
     const categories = {
-      electronics: {
-        mobiles: ["Smartphones", "Feature Phones"],
-        laptops: ["Gaming Laptops", "Ultrabooks"],
-      },
-      automotive: {
-        bikes: ["Sport Bikes", "Cruiser Bikes"],
-        cars: ["Sedans", "SUVs"],
-      },
-      fashion: {
-        men: ["Shirts", "Trousers"],
-        women: ["Dresses", "Skirts"],
-      },
+
+      "SpareByCategory": {
+        "Braking": [
+          "Brake Disc Caliper",
+          "Brake Disc Plate",
+          "Brake Drum",
+          "Master Cylinder Assembly",
+          "Front Brake Drum",
+          "Front Drum Plate",
+          "Rear Brake Drum",
+          "Rear Drum Plate"
+        ],
+        "Electricals": [
+          "Body Control Unit",
+          "CDI",
+          "Digital Meter Worm Speed Sensor",
+          "Engine Control Unit (ECU)",
+          "Handle Bar Switch",
+          "Lock Set (Ignition switch)",
+          "RR Unit",
+          "Self Armature",
+          "Self Starter Motor",
+          "Speedometer",
+          "Stator Coil Plate",
+          "Wiring Harness"
+        ],
+        "EngineAndFuelSystemParts": [
+          "Cam Shaft Assembly",
+          "Carburetor",
+          "Carburetor Repair Kit",
+          "Connecting Rod Kit",
+          "Crank Shaft",
+          "Engine Valve Set",
+          "Fuel Pump Assembly",
+          "Fuel Pump Motor",
+          "Fuel Injector",
+          "Piston Cylinder Kit",
+          "Piston Kit",
+          "Rocker Arm Set"
+        ],
+        "Transmission": [
+          "Chain Sprocket",
+          "Clutch Assembly",
+          "Clutch Cover",
+          "Clutch Plates",
+          "Clutch Pulley",
+          "Clutch Shoe",
+          "Crank Shaft",
+          "Engine Belt for Scooty",
+          "Gear Pinion Set",
+          "Kick Ratchet",
+          "One Way Clutch",
+          "Roller Weights for Scooty"
+        ],
+        "Suspension": [
+          "Rear Shock Absorber",
+          "Fork Pipe",
+          "Front Fork Leg",
+          "Fork Pipe Assembly",
+          "Fork Leg Assembly",
+          "Rear Suspension U Fork or Jhula"
+        ],
+        "OtherSpares": [
+          "Wheel Rim"
+        ]
+      }
     };
+
+    const vehicle = {
+
+      "SpareByVehicle": {
+        "Honda": [
+          "Activa 6G",
+          "Shine",
+          "Unicorn 160",
+          "Hornet 2.0",
+          "CBR 650R"
+        ],
+        "Hero": [
+          "Splendor Plus",
+          "Passion Pro",
+          "Glamour",
+          "Xtreme 160R",
+          "Xpulse 200"
+        ],
+        "Yamaha": [
+          "FZ-X",
+          "MT-15",
+          "R15 V4",
+          "Fascino 125",
+          "Ray ZR 125"
+        ],
+        "Bajaj": [
+          "Pulsar 125",
+          "Pulsar NS200",
+          "Avenger 220",
+          "Dominar 400",
+          "CT 110X"
+        ],
+        "Suzuki": [
+          "Access 125",
+          "Burgman Street",
+          "Gixxer SF",
+          "V-Strom SX",
+          "Hayabusa"
+        ],
+        "TVS": [
+          "Apache RTR 160",
+          "Apache RR 310",
+          "Jupiter",
+          "NTorq 125",
+          "Raider 125"
+        ],
+        "Royal Enfield": [
+          "Classic 350",
+          "Meteor 350",
+          "Himalayan",
+          "Bullet 350",
+          "Hunter 350"
+        ]
+      }
+
+
+    }
 
     // Dropdown Elements
     const categoryDropdown = document.getElementById("category");
@@ -196,6 +331,117 @@
         endCategoryDropdown.disabled = true;
       }
     });
+
+
+
+
+    //Vehicle Category Here
+    const vehiclecategoryDropdown = document.getElementById("vehicle-category");
+    const vehiclesubcategoryDropdown = document.getElementById("vehicle-subcategory");
+    const vehicleendCategoryDropdown = document.getElementById("vehicle-endcategory");
+
+    // Event Listener for Main Category Selection
+    vehiclecategoryDropdown.addEventListener("change", function () {
+      const vehicleselectedCategory = this.value;
+
+      // Populate Subcategory Dropdown
+      vehiclesubcategoryDropdown.innerHTML =
+        '<option value="" disabled selected>Select Subcategory</option>';
+      if (vehicle[vehicleselectedCategory]) {
+        // const addNewOption = document.createElement("option");
+        // addNewOption.value = "add-new";
+        // addNewOption.textContent = "Enter New SubCategory";
+        // vehiclesubcategoryDropdown.appendChild(addNewOption);
+        for (const subcategory in vehicle[vehicleselectedCategory]) {
+          const option = document.createElement("option");
+          option.value = subcategory;
+          option.textContent = subcategory.charAt(0).toUpperCase() + subcategory.slice(1);
+          vehiclesubcategoryDropdown.appendChild(option);
+        }
+
+        vehiclesubcategoryDropdown.disabled = false;
+      } else {
+        vehiclesubcategoryDropdown.disabled = true;
+      }
+      // Reset End Category Dropdown
+      vehicleendCategoryDropdown.innerHTML =
+        '<option value="" disabled selected>Select End Category</option>';
+      vehicleendCategoryDropdown.disabled = true;
+    });
+
+
+
+    // Event Listener for Subcategory Selection
+    vehiclesubcategoryDropdown.addEventListener("change", function () {
+      const vehicleselectedCategory = vehiclecategoryDropdown.value;
+      const vehicleselectedSubcategory = this.value;
+      console.log("Selected category ", vehicleselectedCategory)
+      console.log("Selected sub-category ", vehicleselectedSubcategory)
+      vehicleendCategoryDropdown.innerHTML =
+        '<option value="" disabled selected>Select End Category</option>';
+      if (
+        vehicle[vehicleselectedCategory] &&
+        vehicle[vehicleselectedCategory][vehicleselectedSubcategory]
+      ) {
+        // const addNewOption = document.createElement("option");
+        // addNewOption.value = "add-new-end";
+        // addNewOption.textContent = "Enter New End Category";
+        // vehicleendCategoryDropdown.appendChild(addNewOption);
+        vehicle[vehicleselectedCategory][vehicleselectedSubcategory].forEach((endCategory) => {
+          console.log("the end categories are ", endCategory)
+          const option = document.createElement("option");
+          option.value = endCategory.toLowerCase().replace(" ", "-");
+          option.textContent = endCategory;
+          vehicleendCategoryDropdown.appendChild(option);
+        });
+
+
+        vehicleendCategoryDropdown.disabled = false;
+      } else {
+        vehicleendCategoryDropdown.disabled = true;
+      }
+    });
+
+    // vehicleendCategoryDropdown.addEventListener("change", function () {
+    //   if (this.value === "add-new-end") {
+    //     // Show Input for New End Category
+    //     const newEndCategoryInput = document.createElement("input");
+    //     newEndCategoryInput.type = "text";
+    //     newEndCategoryInput.placeholder = "Enter new end category";
+    //     newEndCategoryInput.id = "new-endcategory-input";
+
+    //     const saveButton = document.createElement("button");
+    //     saveButton.textContent = "Save";
+    //     saveButton.addEventListener("click", function () {
+    //       const newEndCategory = newEndCategoryInput.value.trim();
+    //       if (newEndCategory) {
+    //         const selectedCategory = vehiclecategoryDropdown.value;
+    //         const selectedSubcategory = vehiclesubcategoryDropdown.value;
+
+    //         // Add New End Category to Data and Dropdown
+    //         if (!vehicle[selectedCategory][selectedSubcategory]) {
+    //           vehicle[selectedCategory][selectedSubcategory] = [];
+    //         }
+    //         vehicle[selectedCategory][selectedSubcategory].push(newEndCategory);
+
+    //         const option = document.createElement("option");
+    //         option.value = newEndCategory.toLowerCase().replace(" ", "-");
+    //         option.textContent = newEndCategory;
+    //         vehicleendCategoryDropdown.insertBefore(option, vehicleendCategoryDropdown.lastChild);
+
+    //         // Cleanup Input and Button
+    //         newEndCategoryInput.remove();
+    //         saveButton.remove();
+    //         vehicleendCategoryDropdown.value = newEndCategory;
+    //       }
+    //     });
+
+    //     // Append Input and Button Below Dropdown
+    //     vehicleendCategoryDropdown.parentElement.appendChild(newEndCategoryInput);
+    //     vehicleendCategoryDropdown.parentElement.appendChild(saveButton);
+    //   }
+    // });
+
 
 
     // const submitbtn = document.getElementById("submit-btn");
@@ -267,30 +513,52 @@
       form.addEventListener('submit', (event) => {
         event.preventDefault(); // Prevent the form from submitting the traditional way
 
+
+        const category = document.getElementById("category").value
+        const subcategory = document.getElementById("subcategory").value
+        const endCategory = document.getElementById("end-category").value
+        const vehiclecategory = document.getElementById("vehicle-category").value
+        const vehiclesubcategory = document.getElementById("vehicle-subcategory").value
+        const vehicleendsubcategory = document.getElementById("vehicle-endcategory").value
+        const sparebyCategory = {
+          name: category,
+          subCategoryName: subcategory,
+          endCategoryName: endCategory,
+        }
+        const sparebyVehicle = {
+          name: vehiclecategory,
+          vehicleBrand: vehiclesubcategory,
+          vehicleModel: vehicleendsubcategory,
+        }
+
         // Gather input values when the form is submitted
+        console.log(sparebyCategory)
+        console.log(sparebyVehicle)
         const data = {
           name: document.getElementById("title").value,
-          brand: document.getElementById("brand").value,
+          vehicle: sparebyVehicle,
           price: document.getElementById("selling-price").value,
           inventory: document.getElementById("stock").value,
           description: document.getElementById("description").value,
-          category: document.getElementById("category").value,
-          subcategory: document.getElementById("subcategory").value,
-          endCategory: document.getElementById("end-category").value,
+          category: sparebyCategory,
+          brand: document.getElementById("brand").value,
+
         };
+        console.log(data)
 
         const productImageElements = document.querySelectorAll(".product-image"); // Get all file input elements
         const productImage = [];
 
         productImageElements.forEach(input => {
           if (input.files.length > 0) {
-            console.log("This is input",input);
-            console.log("This is input file",input.files);
+            console.log("This is input", input);
+            console.log("This is input file", input.files);
 
             Array.from(input.files).forEach(file => productImage.push(file));
             // productImageElements.innerHTML = `<img src="${`http://${IP}:${PORT}/api/v1/images/image/download/${files[0]}`}"></img>`
           }
         });
+
 
         console.log(productImage);
 

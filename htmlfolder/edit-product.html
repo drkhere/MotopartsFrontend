@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,25 +64,49 @@
           </div>
 
           <!-- Category Dropdowns -->
-          <div class="form-group">
-            <label for="category">Category:</label>
-            <!-- Main Category Dropdown -->
-            <select id="category" name="category" required>
-              <option value="" disabled selected>Select Category</option>
-              <option value="electronic">Electronics</option>
-              <option value="automotive">Automotive</option>
-              <option value="fashion">Fashion</option>
-            </select>
+          <div class="category-section-1">
+            <div class="form-group">
+              <label for="category">By Category:</label>
+              <!-- Main Category Dropdown -->
+              <select id="category" name="category" required>
+                <option value="" disabled selected>Select Category</option>
+                <option value="SpareByCategory">Spare By Category</option>
+                <!-- <option value="automotive">Automotive</option>
+                <option value="fashion">Fashion</option> -->
+              </select>
 
-            <!-- Subcategory Dropdown -->
-            <select id="subcategory" name="subcategory" disabled>
-              <option value="" disabled selected>Select Subcategory</option>
-            </select>
+              <!-- Subcategory Dropdown -->
+              <select id="subcategory" name="subcategory" disabled>
+                <option value="" disabled selected>Select Subcategory</option>
+              </select>
 
-            <!-- End Category Dropdown -->
-            <select id="end-category" name="end-category" disabled>
-              <option value="" disabled selected>Select End Category</option>
-            </select>
+              <!-- End Category Dropdown -->
+              <select id="end-category" name="end-category" disabled>
+                <option value="" disabled selected>Select End Category</option>
+              </select>
+            </div>
+          </div>
+          <div class="category-section-2">
+            <div class="form-group">
+              <label for="vehicle-category">By Vehicle:</label>
+              <!-- Main Category Dropdown -->
+              <select id="vehicle-category" name="vehicle-category" required>
+                <option value="" disabled selected>Select Category</option>
+                <option value="SpareByVehicle">Spare By Vehicle</option>
+                <!-- <option value="automotive">Automotive</option>
+                <option value="fashion">Fashion</option> -->
+              </select>
+
+              <!-- Subcategory Dropdown -->
+              <select id="vehicle-subcategory" name="vehicle-subcategory" disabled>
+                <option value="" disabled selected>Select Subcategory</option>
+              </select>
+
+              <!-- End Category Dropdown -->
+              <select id="vehicle-endcategory" name="vehicle-endcategory" disabled>
+                <option value="" disabled selected>Select End Category</option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -104,6 +127,7 @@
       </div>
       <!-- Submit Button -->
       <button type="submit" class="submit-btn">Update Product</button>
+
     </form>
   </main>
 
@@ -127,19 +151,130 @@
 
     // Categories and Subcategories Data
     const categories = {
-      electronics: {
-        mobiles: ["Smartphones", "Feature Phones"],
-        laptops: ["Gaming Laptops", "Ultrabooks"],
-      },
-      automotive: {
-        bikes: ["Sport Bikes", "Cruiser Bikes"],
-        cars: ["Sedans", "SUVs"],
-      },
-      fashion: {
-        men: ["Shirts", "Trousers"],
-        women: ["Dresses", "Skirts"],
-      },
+
+      "SpareByCategory": {
+        "Braking": [
+          "Brake Disc Caliper",
+          "Brake Disc Plate",
+          "Brake Drum",
+          "Master Cylinder Assembly",
+          "Front Brake Drum",
+          "Front Drum Plate",
+          "Rear Brake Drum",
+          "Rear Drum Plate"
+        ],
+        "Electricals": [
+          "Body Control Unit",
+          "CDI",
+          "Digital Meter Worm Speed Sensor",
+          "Engine Control Unit (ECU)",
+          "Handle Bar Switch",
+          "Lock Set (Ignition switch)",
+          "RR Unit",
+          "Self Armature",
+          "Self Starter Motor",
+          "Speedometer",
+          "Stator Coil Plate",
+          "Wiring Harness"
+        ],
+        "EngineAndFuelSystemParts": [
+          "Cam Shaft Assembly",
+          "Carburetor",
+          "Carburetor Repair Kit",
+          "Connecting Rod Kit",
+          "Crank Shaft",
+          "Engine Valve Set",
+          "Fuel Pump Assembly",
+          "Fuel Pump Motor",
+          "Fuel Injector",
+          "Piston Cylinder Kit",
+          "Piston Kit",
+          "Rocker Arm Set"
+        ],
+        "Transmission": [
+          "Chain Sprocket",
+          "Clutch Assembly",
+          "Clutch Cover",
+          "Clutch Plates",
+          "Clutch Pulley",
+          "Clutch Shoe",
+          "Crank Shaft",
+          "Engine Belt for Scooty",
+          "Gear Pinion Set",
+          "Kick Ratchet",
+          "One Way Clutch",
+          "Roller Weights for Scooty"
+        ],
+        "Suspension": [
+          "Rear Shock Absorber",
+          "Fork Pipe",
+          "Front Fork Leg",
+          "Fork Pipe Assembly",
+          "Fork Leg Assembly",
+          "Rear Suspension U Fork or Jhula"
+        ],
+        "OtherSpares": [
+          "Wheel Rim"
+        ]
+      }
     };
+
+    const vehicle = {
+
+      "SpareByVehicle": {
+        "Honda": [
+          "Activa 6G",
+          "Shine",
+          "Unicorn 160",
+          "Hornet 2.0",
+          "CBR 650R"
+        ],
+        "Hero": [
+          "Splendor Plus",
+          "Passion Pro",
+          "Glamour",
+          "Xtreme 160R",
+          "Xpulse 200"
+        ],
+        "Yamaha": [
+          "FZ-X",
+          "MT-15",
+          "R15 V4",
+          "Fascino 125",
+          "Ray ZR 125"
+        ],
+        "Bajaj": [
+          "Pulsar 125",
+          "Pulsar NS200",
+          "Avenger 220",
+          "Dominar 400",
+          "CT 110X"
+        ],
+        "Suzuki": [
+          "Access 125",
+          "Burgman Street",
+          "Gixxer SF",
+          "V-Strom SX",
+          "Hayabusa"
+        ],
+        "TVS": [
+          "Apache RTR 160",
+          "Apache RR 310",
+          "Jupiter",
+          "NTorq 125",
+          "Raider 125"
+        ],
+        "Royal Enfield": [
+          "Classic 350",
+          "Meteor 350",
+          "Himalayan",
+          "Bullet 350",
+          "Hunter 350"
+        ]
+      }
+
+
+    }
 
     // Dropdown Elements
     const categoryDropdown = document.getElementById("category");
@@ -196,6 +331,76 @@
     });
 
 
+
+
+    //Vehicle Category Here
+    const vehiclecategoryDropdown = document.getElementById("vehicle-category");
+    const vehiclesubcategoryDropdown = document.getElementById("vehicle-subcategory");
+    const vehicleendCategoryDropdown = document.getElementById("vehicle-endcategory");
+
+    // Event Listener for Main Category Selection
+    vehiclecategoryDropdown.addEventListener("change", function () {
+      const vehicleselectedCategory = this.value;
+
+      // Populate Subcategory Dropdown
+      vehiclesubcategoryDropdown.innerHTML =
+        '<option value="" disabled selected>Select Subcategory</option>';
+      if (vehicle[vehicleselectedCategory]) {
+        // const addNewOption = document.createElement("option");
+        // addNewOption.value = "add-new";
+        // addNewOption.textContent = "Enter New SubCategory";
+        // vehiclesubcategoryDropdown.appendChild(addNewOption);
+        for (const subcategory in vehicle[vehicleselectedCategory]) {
+          const option = document.createElement("option");
+          option.value = subcategory;
+          option.textContent = subcategory.charAt(0).toUpperCase() + subcategory.slice(1);
+          vehiclesubcategoryDropdown.appendChild(option);
+        }
+
+        vehiclesubcategoryDropdown.disabled = false;
+      } else {
+        vehiclesubcategoryDropdown.disabled = true;
+      }
+      // Reset End Category Dropdown
+      vehicleendCategoryDropdown.innerHTML =
+        '<option value="" disabled selected>Select End Category</option>';
+      vehicleendCategoryDropdown.disabled = true;
+    });
+
+
+
+    // Event Listener for Subcategory Selection
+    vehiclesubcategoryDropdown.addEventListener("change", function () {
+      const vehicleselectedCategory = vehiclecategoryDropdown.value;
+      const vehicleselectedSubcategory = this.value;
+      console.log("Selected category ", vehicleselectedCategory)
+      console.log("Selected sub-category ", vehicleselectedSubcategory)
+      vehicleendCategoryDropdown.innerHTML =
+        '<option value="" disabled selected>Select End Category</option>';
+      if (
+        vehicle[vehicleselectedCategory] &&
+        vehicle[vehicleselectedCategory][vehicleselectedSubcategory]
+      ) {
+        // const addNewOption = document.createElement("option");
+        // addNewOption.value = "add-new-end";
+        // addNewOption.textContent = "Enter New End Category";
+        // vehicleendCategoryDropdown.appendChild(addNewOption);
+        vehicle[vehicleselectedCategory][vehicleselectedSubcategory].forEach((endCategory) => {
+          // console.log("the end categories are ", endCategory)
+          const option = document.createElement("option");
+          option.value = endCategory.toLowerCase().replace(" ", "-");
+          option.textContent = endCategory;
+          vehicleendCategoryDropdown.appendChild(option);
+        });
+
+
+        vehicleendCategoryDropdown.disabled = false;
+      } else {
+        vehicleendCategoryDropdown.disabled = true;
+      }
+    });
+
+
     // const submitbtn = document.getElementById("submit-btn");
     // submitbtn.addEventListener("DOMContentLoaded",()=>{
 
@@ -223,22 +428,43 @@
             document.getElementById("cost-price").value = actualproduct.cost || "";
             document.getElementById("description").value = actualproduct.description || "";
             document.getElementById("stock").value = actualproduct.inventory || "";
+            document.getElementById("category").value = actualproduct.category.name;
+            document.getElementById("subcategory").value = actualproduct.category.subCategoryName;
+            document.getElementById("category").value = actualproduct.category.endCategoryName;
 
             // Set the category dropdown
             const categoryDropdown = document.getElementById("category");
-            console.log(actualproduct.category)
-            console.log(actualproduct.category.name)
+            // console.log(actualproduct.category)
+            // console.log(actualproduct.vehicle)
+            console.log("Hello world")
+            // console.log(actualproduct.category.name)
             categoryDropdown.value = actualproduct.category.name || "";
             // Trigger category change to populate subcategory and end category
             categoryDropdown.dispatchEvent(new Event('change'));
 
             // Set subcategory and end-category if they exist
             const subcategoryDropdown = document.getElementById("subcategory");
-            subcategoryDropdown.value = product.subcategory || "";
+            subcategoryDropdown.value = actualproduct.category.subCategoryName || "";
             subcategoryDropdown.dispatchEvent(new Event('change'));
 
             const endCategoryDropdown = document.getElementById("end-category");
-            endCategoryDropdown.value = product.endCategory || "";
+            endCategoryDropdown.value = actualproduct.category.endCategoryName || "";
+
+
+            const vehicleCategoryDropdown = document.getElementById("vehicle-category");
+            vehiclecategoryDropdown.value= actualproduct.vehicle.name || "";
+            vehicleCategoryDropdown.dispatchEvent(new Event('change'));
+            
+            // document.getElementById("vehicle-category").value = actualproduct.vehicle.name || "";
+            const vehicleSubCategoryDropdown = document.getElementById("vehicle-subcategory");
+            vehicleSubCategoryDropdown.value= actualproduct.vehicle.vehicleBrand || "";
+            vehicleSubCategoryDropdown.dispatchEvent(new Event('change'));
+
+            // document.getElementById("vehicle-subcategory").value = actualproduct.vehicle.vehicleBrand || "";
+            const vehicleEndCategoryDropdown = document.getElementById("vehicle-endcategory");
+            vehicleEndCategoryDropdown.value= actualproduct.vehicle.vehicleModel || "";
+            // vehicleEndCategoryDropdown.dispatchEvent(new Event('change'));
+            // document.getElementById("vehicle-endcategory").value = actualproduct.vehicle.vehicleModel || "";
 
             const imageUrl = actualproduct.images && actualproduct.images.length > 0
               ? `http://${IP}:${PORT}/api/v1/images/image/download/${actualproduct.images[0].id}`
@@ -256,99 +482,116 @@
           .catch((error) => console.error("Error fetching product details:", error));
       }
 
-      // Add More Image Fields
-      document.getElementById('add-image-btn').addEventListener('click', function () {
-        const newImageInput = document.createElement('input');
-        newImageInput.type = 'file';
-        newImageInput.name = 'more-images[]';
-        newImageInput.accept = 'image/*';
-        document.getElementById('additional-images').appendChild(newImageInput);
-      });
+      // // Add More Image Fields
+      // document.getElementById('add-image-btn').addEventListener('click', function () {
+      //   const newImageInput = document.createElement('input');
+      //   newImageInput.type = 'file';
+      //   newImageInput.name = 'more-images[]';
+      //   newImageInput.accept = 'image/*';
+      //   document.getElementById('additional-images').appendChild(newImageInput);
+      // });
 
-      // Categories and Subcategories Data
-      const categories = {
-        electronics: {
-          mobiles: ["Smartphones", "Feature Phones"],
-          laptops: ["Gaming Laptops", "Ultrabooks"],
-        },
-        automotive: {
-          bikes: ["Sport Bikes", "Cruiser Bikes"],
-          cars: ["Sedans", "SUVs"],
-        },
-        fashion: {
-          men: ["Shirts", "Trousers"],
-          women: ["Dresses", "Skirts"],
-        },
-      };
+      // // Categories and Subcategories Data
+      // const categories = {
+      //   electronics: {
+      //     mobiles: ["Smartphones", "Feature Phones"],
+      //     laptops: ["Gaming Laptops", "Ultrabooks"],
+      //   },
+      //   automotive: {
+      //     bikes: ["Sport Bikes", "Cruiser Bikes"],
+      //     cars: ["Sedans", "SUVs"],
+      //   },
+      //   fashion: {
+      //     men: ["Shirts", "Trousers"],
+      //     women: ["Dresses", "Skirts"],
+      //   },
+      // };
 
-      // Dropdown Elements
-      const categoryDropdown = document.getElementById("category");
-      const subcategoryDropdown = document.getElementById("subcategory");
-      const endCategoryDropdown = document.getElementById("end-category");
+      // // Dropdown Elements
+      // const categoryDropdown = document.getElementById("category");
+      // const subcategoryDropdown = document.getElementById("subcategory");
+      // const endCategoryDropdown = document.getElementById("end-category");
 
-      // Event Listener for Main Category Selection
-      categoryDropdown.addEventListener("change", function () {
-        const selectedCategory = this.value;
+      // // Event Listener for Main Category Selection
+      // categoryDropdown.addEventListener("change", function () {
+      //   const selectedCategory = this.value;
 
-        // Populate Subcategory Dropdown
-        subcategoryDropdown.innerHTML =
-          '<option value="" disabled selected>Select Subcategory</option>';
-        if (categories[selectedCategory]) {
-          for (const subcategory in categories[selectedCategory]) {
-            const option = document.createElement("option");
-            option.value = subcategory;
-            option.textContent = subcategory.charAt(0).toUpperCase() + subcategory.slice(1);
-            subcategoryDropdown.appendChild(option);
-          }
-          subcategoryDropdown.disabled = false;
-        } else {
-          subcategoryDropdown.disabled = true;
-        }
+      //   // Populate Subcategory Dropdown
+      //   subcategoryDropdown.innerHTML =
+      //     '<option value="" disabled selected>Select Subcategory</option>';
+      //   if (categories[selectedCategory]) {
+      //     for (const subcategory in categories[selectedCategory]) {
+      //       const option = document.createElement("option");
+      //       option.value = subcategory;
+      //       option.textContent = subcategory.charAt(0).toUpperCase() + subcategory.slice(1);
+      //       subcategoryDropdown.appendChild(option);
+      //     }
+      //     subcategoryDropdown.disabled = false;
+      //   } else {
+      //     subcategoryDropdown.disabled = true;
+      //   }
 
-        // Reset End Category Dropdown
-        endCategoryDropdown.innerHTML =
-          '<option value="" disabled selected>Select End Category</option>';
-        endCategoryDropdown.disabled = true;
-      });
+      //   // Reset End Category Dropdown
+      //   endCategoryDropdown.innerHTML =
+      //     '<option value="" disabled selected>Select End Category</option>';
+      //   endCategoryDropdown.disabled = true;
+      // });
 
-      // Event Listener for Subcategory Selection
-      subcategoryDropdown.addEventListener("change", function () {
-        const selectedCategory = categoryDropdown.value;
-        const selectedSubcategory = this.value;
+      // // Event Listener for Subcategory Selection
+      // subcategoryDropdown.addEventListener("change", function () {
+      //   const selectedCategory = categoryDropdown.value;
+      //   const selectedSubcategory = this.value;
 
-        // Populate End Category Dropdown
-        endCategoryDropdown.innerHTML =
-          '<option value="" disabled selected>Select End Category</option>';
-        if (
-          categories[selectedCategory] &&
-          categories[selectedCategory][selectedSubcategory]
-        ) {
-          categories[selectedCategory][selectedSubcategory].forEach((endCategory) => {
-            const option = document.createElement("option");
-            option.value = endCategory.toLowerCase().replace(" ", "-");
-            option.textContent = endCategory;
-            endCategoryDropdown.appendChild(option);
-          });
-          endCategoryDropdown.disabled = false;
-        } else {
-          endCategoryDropdown.disabled = true;
-        }
-      });
+      //   // Populate End Category Dropdown
+      //   endCategoryDropdown.innerHTML =
+      //     '<option value="" disabled selected>Select End Category</option>';
+      //   if (
+      //     categories[selectedCategory] &&
+      //     categories[selectedCategory][selectedSubcategory]
+      //   ) {
+      //     categories[selectedCategory][selectedSubcategory].forEach((endCategory) => {
+      //       const option = document.createElement("option");
+      //       option.value = endCategory.toLowerCase().replace(" ", "-");
+      //       option.textContent = endCategory;
+      //       endCategoryDropdown.appendChild(option);
+      //     });
+      //     endCategoryDropdown.disabled = false;
+      //   } else {
+      //     endCategoryDropdown.disabled = true;
+      //   }
+      // });
 
+      
       const urlUpdate = `http://${IP}:${PORT}/api/v1/products/product/${productId}/update`;
 
       const form = document.querySelector('.formforedit');
       form.addEventListener('submit', (event) => {
         event.preventDefault();
 
+
+        const sparebyCategory = {
+          name: categoryDropdown.value,
+          subCategoryName: subcategoryDropdown.value,
+          endCategoryName: endCategoryDropdown.value,
+        }
+        const sparebyVehicle = {
+          name: vehiclecategoryDropdown.value,
+          vehicleBrand: vehiclesubcategoryDropdown.value,
+          vehicleModel: vehicleendCategoryDropdown.value,
+        }
+
+        console.log("To pass the SparebyCategory ",sparebyCategory)
+        console.log("To pass the SparebyVehicle ",sparebyVehicle)
+
         const data2 = {
-          id : productId,
+          id: productId,
           name: document.getElementById("title").value,
           brand: document.getElementById("brand").value,
           price: document.getElementById("selling-price").value,
           inventory: document.getElementById("stock").value,
           description: document.getElementById("description").value,
-          category: document.getElementById("category").value,
+          category : sparebyCategory,
+          vehicle : sparebyVehicle,
         };
 
         const productImage = document.getElementById("product-image").files[0];
@@ -369,9 +612,9 @@
           })
           .then(productData => {
             console.log("Product added successfully:", productData);
-            console.log("product image ",productImage);
-            console.log("Product Id",productData.data.id)
-            console.log("Image id ",productData.data.images[0].id)
+            console.log("product image ", productImage);
+            console.log("Product Id", productData.data.id)
+            console.log("Image id ", productData.data.images[0].id)
 
             const theImage = productData.data.images[0].id
 
@@ -383,7 +626,7 @@
 
             return fetch(urlimage, {
               method: "PUT",
-              body:formData,
+              body: formData,
             });
           })
           .then(imageResponse => {
